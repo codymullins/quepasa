@@ -3,15 +3,16 @@
 
 <div class="rounded-lg border-1 @BorderColor p-3 text-neutral-100 flex flex-col justify-between">
     <h3 class="text-lg font-bold">@(Service.Name ?? Service.Url)</h3>
-    <div class="flex flex-col gap-2">
-    @if (statusInfo == null)
-    {
-        <p>Loading...</p>
-    }
-    else
-    {
-        <p>@statusInfo.Status</p>
-        <p class="text-xs text-neutral-200">Last update: @statusInfo.LastChecked.Humanize()</p>
-    }
+    <div class="flex flex-col gap-2 @(loading && statusInfo == null ? "animate-pulse" : "")">
+        @if (statusInfo == null)
+        {
+            <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48"></div>
+            <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 w-40"></div>
+        }
+        else
+        {
+            <div>@statusInfo.Status</div>
+            <div class="text-xs text-neutral-200">Last update: @statusInfo.LastChecked.Humanize()</div>
+        }
     </div>
 </div>

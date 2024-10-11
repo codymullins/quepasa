@@ -5,6 +5,7 @@ namespace Quepasa.Components;
 
 public partial class ServiceStatusTile(StatusChecker statusChecker)
 {
+    private bool loading;
     private StatusInfo? statusInfo;
 
     public string BorderColor => statusInfo?.Status?.ToLower() switch
@@ -23,6 +24,22 @@ public partial class ServiceStatusTile(StatusChecker statusChecker)
 
     protected override async Task OnInitializedAsync()
     {
-        statusInfo = await statusChecker.CheckStatusAsync(Service.Url);
+        loading = true;
+        try
+        {
+            statusInfo = await statusChecker.CheckStatusAsync(Service.Url);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            statusInfo = new StatusInfo
+            {
+                Status = "Error"
+            };
+        }
+        finally
+        {
+            loading = false;
+        }
     }
 }

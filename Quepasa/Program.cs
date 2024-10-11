@@ -1,34 +1,20 @@
+using Microsoft.AspNetCore.Components.Web;
+using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Quepasa.Components;
 using Quepasa.Models;
 
-var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container.
-builder.Services.AddRazorComponents();
+// var builder = WebApplication.CreateBuilder(args);
+var builder = WebAssemblyHostBuilder.CreateDefault(args);
+builder.RootComponents.Add<App>("#app");
+builder.RootComponents.Add<HeadOutlet>("head::after");
 
 builder.Services.AddHttpClient();
-builder.Services.AddTransient<StatusChecker>();
-builder.Services.AddTransient<StatusResponseTransformer>();
+builder.Services.AddScoped<StatusChecker>();
+builder.Services.AddScoped<StatusResponseTransformer>();
 builder.Services.AddSingleton(TimeProvider.System);
 
 builder.Services.Configure<MonitoringOptions>(builder.Configuration.GetSection("Monitoring"));
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
-{
-    app.UseExceptionHandler("/Error", createScopeForErrors: true);
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-    app.UseHsts();
-}
-
-app.UseHttpsRedirection();
-
-
-app.UseAntiforgery();
-
-app.MapStaticAssets();
-app.MapRazorComponents<App>();
-
-app.Run();
+await app.RunAsync();

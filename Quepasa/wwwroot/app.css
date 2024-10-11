@@ -841,8 +841,23 @@
   .table-row {
     display: table-row;
   }
+  .table-row-group {
+    display: table-row-group;
+  }
+  .h-2 {
+    height: var(--spacing-2, 0.5rem);
+  }
+  .h-2\.5 {
+    height: var(--spacing-2_5, 0.625rem);
+  }
   .h-auto {
     height: auto;
+  }
+  .w-40 {
+    width: var(--spacing-40, 10rem);
+  }
+  .w-48 {
+    width: var(--spacing-48, 12rem);
   }
   .w-auto {
     width: auto;
@@ -861,6 +876,9 @@
   }
   .transform {
     transform: var(--tw-rotate-x) var(--tw-rotate-y) var(--tw-rotate-z) var(--tw-skew-x) var(--tw-skew-y);
+  }
+  .animate-pulse {
+    animation: var(--animate-pulse, pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite);
   }
   .resize {
     resize: both;
@@ -962,6 +980,9 @@
   }
   .rounded {
     border-radius: var(--radius, 0.25rem);
+  }
+  .rounded-full {
+    border-radius: calc(infinity * 1px);
   }
   .rounded-lg {
     border-radius: var(--radius-lg, 0.5rem);
@@ -1363,6 +1384,11 @@
   .md\:grid-cols-3 {
     @media (width >= 48rem) {
       grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+  .dark\:bg-gray-700 {
+    @media (prefers-color-scheme: dark) {
+      background-color: var(--color-gray-700, #374151);
     }
   }
 }
