@@ -1,0 +1,43 @@
+﻿@inherits LayoutComponentBase
+@inject IJSRuntime JSRuntime
+@inject NavigationManager NavigationManager
+@implements IDisposable
+
+<div>
+    @Body
+</div>
+
+<div id="blazor-error-ui" data-nosnippet>
+    An unhandled error has occurred.
+    <a href="." class="reload">Reload</a>
+    <span class="dismiss">🗙</span>
+</div>
+
+@code {
+
+    protected override void OnInitialized()
+    {
+        NavigationManager.LocationChanged += LocationChanged;
+        base.OnInitialized();
+    }
+
+    private async void LocationChanged(object? sender, LocationChangedEventArgs e)
+    {
+        if (e.IsNavigationIntercepted)
+        {
+            var pageViewData = new
+            {
+                Type = "pageView",
+                Path = new Uri(NavigationManager.Uri).AbsolutePath
+            };
+
+            await JSRuntime.InvokeVoidAsync("rg4js", "trackEvent", pageViewData);
+        }
+    }
+
+    void IDisposable.Dispose()
+    {
+        NavigationManager.LocationChanged -= LocationChanged;
+    }
+
+}

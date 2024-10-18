@@ -1,0 +1,36 @@
+﻿@using Quepasa.Web.Client.Components
+@using Microsoft.AspNetCore.Components.Web
+<!DOCTYPE html>
+<html lang="en" class="bg-neutral-950">
+
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <base href="/"/>
+    <link rel="stylesheet" href="@Assets["app.css"]"/>
+    <link rel="stylesheet" href="@Assets["Quepasa.Web.styles.css"]"/>
+    <ImportMap/>
+    <link rel="icon" type="image/png" href="favicon.png"/>
+    <HeadOutlet/>
+    <script type="text/javascript">
+        !function(a,b,c,d,e,f,g,h){a.RaygunObject=e,a[e]=a[e]||function(){
+            (a[e].o=a[e].o||[]).push(arguments)},f=b.createElement(c),g=b.getElementsByTagName(c)[0],
+            f.async=1,f.src=d,g.parentNode.insertBefore(f,g),h=a.onerror,a.onerror=function(b,c,d,f,g){
+            h&&h(b,c,d,f,g),g||(g=new Error(b)),a[e].q=a[e].q||[],a[e].q.push({
+                e:g})}}(window,document,"script","//cdn.raygun.io/raygun4js/raygun.min.js","rg4js");
+    </script>
+
+</head>
+
+<body>
+<Routes/>
+<script src="_framework/blazor.web.js"></script>
+<script type="text/javascript">
+    rg4js('apiKey', 'OZRbUTKDKnLAVUfoWcHAg');
+    rg4js('enableRealUserMonitoring', true); // This enables Real User Monitoring
+    rg4js('enableCrashReporting', true);
+    window.rg4js = rg4js;       // This is needed to connect Raygun4JS with Blazor callbacks
+</script>
+</body>
+
+</html>

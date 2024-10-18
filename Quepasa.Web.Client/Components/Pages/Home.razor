@@ -1,0 +1,43 @@
+﻿@page "/"
+@rendermode InteractiveServer
+@attribute [StreamRendering]
+
+<PageTitle>Home</PageTitle>
+
+<div class="flex flex-col justify-center items-center gap-4 p-2 md:p-4">
+    <h1 class="font-bold text-xl text-white">¿Qué Pasa?</h1>
+    <p class="text-neutral-50">A simple service status dashboard</p>
+    @* <button type="button" class="text-neutral-200 text-sm px-2 py-1 hover:bg-neutral-800 rounded-lg">Options</button> *@
+    <div class="flex justify-center">
+        <div class="blocks">
+            @foreach (var svc in Services)
+            {
+                <LoggingErrorBoundary>
+                    <ChildContent>
+                        <ServiceStatusTile Service="@svc"/>
+                    </ChildContent>
+                    <ErrorContent>
+                        <div class="bg-red-500 text-white p-3 rounded-lg">
+                            <h3 class="font-bold">An error occurred</h3>
+                        </div>
+                    </ErrorContent>
+                </LoggingErrorBoundary>
+            }
+        </div>
+    </div>
+    <a class="text-neutral-50 hover:text-white hover:underline" href="https://github.com/codymullins/quepasa" target="_blank">View on GitHub</a>
+</div>
+
+@code {
+
+    public string GetGridColumnTemplate()
+    {
+        return "grid-template-columns: 200px 200px;";
+    }
+
+    public string GetGridRowTemplate()
+    {
+        return "grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;";
+    }
+
+}

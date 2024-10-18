@@ -1,0 +1,32 @@
+.service-tile {
+    transition: all 0.3s cubic-bezier(0.39, 0.575, 0.565, 1);
+    width: 200px;
+    grid-column: span 1;
+}
+
+.service-tile.span-2 {
+    transition: all 0.2s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+    width: calc(200px * 2 + 1em);
+    grid-column: span 2;
+}
+
+.service-tile.fade-in {
+    /*opacity: 0.5;*/
+    /*animation: fadeOutIn 1s cubic-bezier(0.23, 1, 0.32, 1) forwards;*/
+    /*animation-delay: 0.3s;*/
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOutIn {
+    0% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+    }
+}

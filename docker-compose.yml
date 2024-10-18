@@ -1,0 +1,12 @@
+﻿services:
+  quepasa.web:
+    image: quepasa.web
+    build:
+      context: .
+      dockerfile: Quepasa.Web/Quepasa.Web/Dockerfile
+
+  quepasa.web.client:
+    image: quepasa.web.client
+    build:
+      context: .
+      dockerfile: Quepasa.Web/Quepasa.Web.Client/Dockerfile

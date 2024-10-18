@@ -1,0 +1,45 @@
+@using Humanizer
+@using Quepasa.Web.Client.Models
+@inject HttpClient Http
+
+<div class="gap-2 rounded-lg border-1 @BorderColor p-3 text-neutral-100 flex flex-col justify-between truncate service-tile bg-neutral-950 @(ShowMore(Service) ? "span-2" : "fade-in")" style="">
+    <div class="flex justify-between">
+        <h3 class="text-lg font-bold">@(Service.Name ?? Service.Url)</h3>
+        <div>@statusInfo.GetStatusIcon()</div>
+    </div>
+    <div class="flex flex-col gap-2 min-h-28 @(loading && statusInfo == null ? "animate-pulse" : "")">
+        @if (statusInfo == null)
+        {
+            <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-40"></div>
+            <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 w-32"></div>
+        }
+        else
+        {
+            <div class="flex gap-2">
+                <div title="@statusInfo.RawDescription">@statusInfo.GetOverallStatus()</div>
+                @if (statusInfo.Services?.Count > 0)
+                {
+                    <button class="text-xs font-semibold hover:text-gray-400 text-gray-500 hover:underline" type="button" @onclick="() => Toggle(Service)">@statusInfo.Services?.Count services</button>
+                }
+            </div>
+            @if (ShowMore(Service))
+            {
+                @foreach (var item in statusInfo.Services ?? [])
+                {
+                    <div class="flex justify-between gap-2 truncate text-xs">
+                        <div>@item.Key</div>
+                        <div>@item.Value.GetStatusText()</div>
+                    </div>
+                }
+            }
+        }
+    </div>
+    @if (statusInfo == null)
+    {
+        <div class="h-1 bg-gray-200 rounded-full dark:bg-gray-700 w-32"></div>
+    }
+    else
+    {
+        <a href="@Service.Url" target="_blank" class="text-xs font-semibold hover:text-gray-400 text-gray-500 hover:underline">Last update: @statusInfo.LastChecked.Humanize()</a>
+    }
+</div>

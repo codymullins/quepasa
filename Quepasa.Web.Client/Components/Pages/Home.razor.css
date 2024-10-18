@@ -1,0 +1,14 @@
+.blocks {
+    display: grid;
+    gap: 1em;
+    grid-template-columns: 200px auto;
+    /*grid-auto-rows: 4em;*/
+    transition: 300ms;
+}
+
+@media (min-width: 30em) and (orientation: landscape) {
+    /* … */
+    .blocks {
+        grid-template-columns: 200px 200px auto;
+    }
+}
