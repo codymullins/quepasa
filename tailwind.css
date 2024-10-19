@@ -1,10 +1,5 @@
 @import "tailwindcss";
 
-.page {
-    background-color: #0a0a0a;
-    /*@apply font-sans antialiased bg-neutral-950*/
-}
-
 @font-face {
     font-family: 'MonaspaceNeon';
     src: url('/fonts/MonaspaceNeonVarVF[wght,wdth,slnt].woff2') format('woff2-variations');

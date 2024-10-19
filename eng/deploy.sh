@@ -1,0 +1,12 @@
+az container create --resource-group rg-eastus-prod \
+                    --name $1 \
+                    --image pureblazor.azurecr.io/quepasa.web:v2 \
+                    --dns-name-label $1 \
+                    --ports 8080 \
+                    --location eastus \
+                    --cpu 1 \
+                    --memory 1.5 \
+                    --restart-policy OnFailure \
+                    --registry-login-server $2 \
+                    --registry-username $3 \
+                    --registry-password $4

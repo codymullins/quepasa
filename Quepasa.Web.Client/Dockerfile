@@ -7,10 +7,10 @@ EXPOSE 8081
 FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["Quepasa.Web/Quepasa.Web.Client/Quepasa.Web.Client.csproj", "Quepasa.Web/Quepasa.Web.Client/"]
-RUN dotnet restore "Quepasa.Web/Quepasa.Web.Client/Quepasa.Web.Client.csproj"
+COPY ["Quepasa.Web.Client/Quepasa.Web.Client.csproj", "Quepasa.Web.Client/"]
+RUN dotnet restore "Quepasa.Web.Client/Quepasa.Web.Client.csproj"
 COPY . .
-WORKDIR "/src/Quepasa.Web/Quepasa.Web.Client"
+WORKDIR "/src/Quepasa.Web.Client"
 RUN dotnet build "Quepasa.Web.Client.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish

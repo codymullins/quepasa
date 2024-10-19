@@ -1,12 +1,11 @@
 ﻿services:
   quepasa.web:
     image: quepasa.web
+    ports:
+      - 9090:8080
     build:
       context: .
-      dockerfile: Quepasa.Web/Quepasa.Web/Dockerfile
-
-  quepasa.web.client:
-    image: quepasa.web.client
-    build:
-      context: .
-      dockerfile: Quepasa.Web/Quepasa.Web.Client/Dockerfile
+      dockerfile: Quepasa.Web/Dockerfile
+      platforms:
+        - linux/amd64
+        - linux/arm64

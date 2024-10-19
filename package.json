@@ -4,8 +4,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "tailwind": "npx @tailwindcss/cli@4.0.0-alpha.26 -i ./tailwind.css -o ./Quepasa.Web/wwwroot/app.css",
-    "tailwind:watch": "npx @tailwindcss/cli@4.0.0-alpha.26 -i ./tailwind.css -o ./Quepasa.Web/wwwroot/app.css --watch"
+    "tailwind": "npx @tailwindcss/cli@4.0.0-alpha.28 -i ./tailwind.css -o ./Quepasa.Web/wwwroot/app.css",
+    "tailwind:watch": "npx @tailwindcss/cli@4.0.0-alpha.28 -i ./tailwind.css -o ./Quepasa.Web/wwwroot/app.css --watch"
   },
   "author": "",
   "license": "ISC",
